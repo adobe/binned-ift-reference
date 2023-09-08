@@ -19,6 +19,7 @@ it.
 #include <set>
 #include <vector>
 #include <cassert>
+#include <cstdint>
 
 #include "streamhelp.h"
 #include "cmap.h"

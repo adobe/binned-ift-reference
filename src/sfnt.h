@@ -17,6 +17,7 @@ it.
 #include <unordered_map>
 #include <set>
 #include <utility>
+#include <cstdint>
 
 #include "streamhelp.h"
 

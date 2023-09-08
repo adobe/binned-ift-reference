@@ -221,16 +221,16 @@ bool iftb::merger::merge(iftb::sfnt &sf, char *oldbuf, char *newbuf) {
         sf.setBuffer(oldbuf, fontend);
     }
     if (!has_cff) {
-        for (uint32_t i = locanoff + localen; i < fontend; i++)
-            *(newbuf + i) = 0;
-        for (uint32_t i = glyfnoff + glyfnlen; i < locanoff; i++)
-            *(newbuf + i) = 0;
         memmove(newbuf + locanoff, oldbuf + locacoff, localen);
         ss.rdbuf()->pubsetbuf(newbuf + locanoff, localen);
         if (!copyGlyphData(ss, glyphCount, newbuf + glyfnoff,
                            oldbuf + glyfcoff, glyfnlen - glyfclen,
                            glyphMap1, 0))
             return false;
+        for (uint32_t i = locanoff + localen; i < fontend; i++)
+            *(newbuf + i) = 0;
+        for (uint32_t i = glyfnoff + glyfnlen; i < locanoff; i++)
+            *(newbuf + i) = 0;
         sf.adjustTable(T_LOCA, locanoff, localen, true);
         sf.adjustTable(T_GLYF, glyfnoff, glyfnlen, true);
     }
